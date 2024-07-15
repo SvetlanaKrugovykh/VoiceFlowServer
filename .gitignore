@@ -13,3 +13,6 @@ third_party
 assets
 venv
 uploads
+__pycache__
+
+
