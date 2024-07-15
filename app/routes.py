@@ -18,7 +18,6 @@ def upload_audio():
         return jsonify({'error': 'No selected file'}), 400
     if file:
         segment_number = request.form.get('segment', 'unknown')
-        # filename = f"{segment_name}_{segment_number}.wav"
         filename = f"{generate_filename(segment_number)}"        
         filepath = os.path.join('uploads', filename)
         file.save(filepath)
