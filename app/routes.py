@@ -5,6 +5,10 @@ import os
 
 main = Blueprint('main', __name__)
 
+def generate_filename(segment_number):
+    segment_name = os.getenv('SEGMENT_NAME', 'segment')
+    return f"{segment_name}_{segment_number}.wav"
+
 @main.route('/upload', methods=['POST'])
 def upload_audio():
     if 'file' not in request.files:
@@ -14,7 +18,8 @@ def upload_audio():
         return jsonify({'error': 'No selected file'}), 400
     if file:
         segment_number = request.form.get('segment', 'unknown')
-        filename = f"segment_{segment_number}.wav"
+        # filename = f"{segment_name}_{segment_number}.wav"
+        filename = f"{generate_filename(segment_number)}"        
         filepath = os.path.join('uploads', filename)
         file.save(filepath)
         return jsonify({'message': f'File {filename} uploaded successfully'}), 200
