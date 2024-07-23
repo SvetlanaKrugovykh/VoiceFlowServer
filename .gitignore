@@ -14,5 +14,6 @@ assets
 venv
 uploads
 __pycache__
+*.pyc
 
 
